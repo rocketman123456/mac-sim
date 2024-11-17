@@ -23,10 +23,12 @@ if len(sys.argv) > 2:
 # Subscribe to zipcode, default is NYC, 10001
 topicfilter = "10001"
 socket.setsockopt_string(zmq.SUBSCRIBE, topicfilter)
+# socket.setsockopt_string(zmq.SUBSCRIBE, "")
 
 # Process 5 updates
 total_value = 0
-for update_nbr in range(5):
+# for update_nbr in range(5):
+while True:
     string = socket.recv()
     topic, messagedata = string.split()
     total_value += int(messagedata)
